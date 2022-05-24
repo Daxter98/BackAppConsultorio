@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'AppConsultorio'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_452B539F562B47A18383464206288451 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0CA0179F171148ABA3EE9E6E0EC678A8 }}
