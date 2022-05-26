@@ -1,3 +1,4 @@
+from sqlalchemy import true
 from sqlalchemy.orm import Session
 from fastapi import HTTPException
 
@@ -69,4 +70,26 @@ def update_cita(id_cita: int, db: Session, cita: schemas.Cita):
     return db_cita
 
 
+# Operaciones de delete para paciente y cita
+def delete_cita(id_cita: int, db: Session):
+    db_cita = get_cita(db, id_cita)
 
+    if db_cita is None:
+        raise HTTPException(status_code=404, detail="Cita no encontrada")
+
+    db.delete(db_cita)
+    db.commit()
+
+    return {"ok": True}
+
+
+def delete_paciente(id_paciente: int, db: Session):
+    db_paciente = get_paciente(db, id_paciente)
+
+    if db_paciente is None:
+        raise HTTPException(status_code=404, detail="Cita no encontrada")
+
+    db.delete(db_paciente)
+    db.commit()
+
+    return {"ok": True}

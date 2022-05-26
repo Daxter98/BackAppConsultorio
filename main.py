@@ -73,12 +73,19 @@ def get_paciente(db: Session = Depends(get_db), skip: int = 0, limit: int = 100)
     return pacientes
 
 # Path Operations for Updating Data
-
 @app.put("/pacientes/{id_paciente}", response_model=schemas.Paciente)
 def modificar_paciente(id_paciente: int, paciente: schemas.Paciente, db: Session = Depends(get_db)):
     return crud.update_paciente(id_paciente, db, paciente)
 
-
 @app.put("/citas/{id_cita}", response_model=schemas.Cita)
 def modificar_cita(id_cita: int, cita: schemas.CitaCreate, db: Session = Depends(get_db)):
     return crud.update_cita(id_cita, db, cita)
+
+# Delete Path Operations
+@app.delete("/pacientes/{id_paciente}")
+def eliminar_paciente(id_paciente: int, db: Session = Depends(get_db)):
+    return crud.delete_paciente(id_paciente, db)
+
+@app.delete("/citas/{id_cita}")
+def eliminar_cita(id_cita: int, db: Session = Depends(get_db)):
+    return crud.delete_cita(id_cita, db)
